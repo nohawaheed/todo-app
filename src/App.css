@@ -1,38 +1,217 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+:root {
+  /* primary */
+  --bright-blue: hsl(220, 98%, 61%);
+  --check-background: linear-gradient(to bottom, #57ddff, #c058f3);
+}
+.theme-dark {
+  --background-color: hsl(235, 21%, 11%) !important;
+  --main-color: hsl(235, 24%, 19%);
+  --light-grayish-blue: hsl(234, 39%, 85%) !important;
+  --very-dark-grayish-blue: hsl(236, 33%, 92%);
+  --dark-grayish-blue: hsl(234, 11%, 52%) !important;
+}
+.theme-light {
+  /* light theme */
+  --background-color: hsl(0, 0%, 98%);
+  --main-color: hwb(0 100% 0%);
+  --very-light-grayish-blue: hsl(236, 33%, 92%);
+  --light-grayish-blue: hsl(233, 11%, 84%);
+  --dark-grayish-blue: hsl(236, 9%, 61%);
+  --very-dark-grayish-blue: hsl(235, 19%, 35%);
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.attribution {
+  font-size: 11px;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.attribution a {
+  color: hsl(228, 45%, 44%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.josefin-sans-400 {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.josefin-sans-700 {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+.app-header {
+  color: white;
+  display: flex;
+  min-width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0px;
+  letter-spacing: 0.5rem;
+  .image {
+    cursor: pointer;
   }
 }
-
-.App-header {
-  background-color: #282c34;
+main {
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  background-size: 100% 30%;
   min-height: 100vh;
+  background-color: var(--background-color);
+}
+.container {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  padding: 24px;
+  h1 {
+    text-transform: uppercase;
   }
-  to {
-    transform: rotate(360deg);
+}
+.create-todo,
+.filter-todos {
+  margin: 16px 0px;
+  button {
+    all: unset;
+    color: var(--dark-grayish-blue);
+    font-weight: 700;
+    &:hover {
+      color: var(--very-dark-grayish-blue);
+      cursor: pointer;
+    }
+  }
+}
+
+.filter-todos {
+  justify-content: center;
+  font-size: unset !important;
+  border-radius: 5px;
+  box-shadow: 0px 16px 48px 0px rgba(0, 0, 0, 0.176);
+}
+
+.desktop-view {
+  button {
+    padding: 0px 10px;
+  }
+  margin: unset;
+}
+
+.card {
+  border: 1px solid var(--main-color);
+  padding: 16px;
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--main-color);
+  min-width: 100%;
+  font-size: small;
+  user-select: none;
+  touch-action: none; /* to make onpointermove work on touch devices */
+
+  input {
+    all: unset;
+    width: 100%;
+  }
+}
+
+.total {
+  justify-content: space-between;
+  color: var(--dark-grayish-blue);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.circle {
+  min-width: 25px !important  ;
+  min-height: 25px !important ;
+  border-radius: 50% !important ;
+  border: 1.5px solid var(--dark-grayish-blue) !important ;
+}
+.check:hover {
+  cursor: pointer;
+  background: linear-gradient(to right, var(--main-color), var(--main-color)),
+    linear-gradient(to bottom, #57ddff, #c058f3);
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+}
+
+.todo-list-container {
+  min-width: 100% !important;
+}
+.shadow {
+  border-radius: 5px;
+  min-width: 100%;
+}
+.todo-list {
+  display: flex;
+  justify-content: space-between !important;
+  align-items: center !important;
+  min-width: calc(100% - 39px);
+  p:hover {
+    cursor: pointer;
+    color: var(--dark-grayish-blue) !important;
+  }
+}
+
+.todo-first-card {
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+}
+
+.cross-icon {
+  max-width: 14px;
+  max-height: 14px;
+  cursor: pointer;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.border-color {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.drag {
+  color: var(--dark-grayish-blue);
+  margin: 50px 0px;
+}
+
+.clear-completed {
+  all: unset;
+  &:hover {
+    color: var(--very-dark-grayish-blue);
+    cursor: pointer;
+  }
+}
+
+.active {
+  color: var(--bright-blue) !important;
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    display: flex;
+    justify-content: center;
+  }
+  .card {
+    font-size: unset;
+  }
+  .shadow {
+    box-shadow: 0px 16px 48px 0px rgba(0, 0, 0, 0.176);
+  }
+  .filter-todos {
+    box-shadow: unset;
   }
 }
