@@ -20,6 +20,13 @@ function App() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [theme, setTheme] = useState("theme-light");
+  const backgroundImage =  isMobile && !isDarkMode
+            ? mobileImageLight
+            : isMobile && isDarkMode
+            ? mobileImageDark
+            : !isMobile && !isDarkMode
+            ? desktopImageLight
+            : desktopImageDark
   const todos = [
     { id: 1, item: "Complete online JavaScript course", status: "active" },
     { id: 2, item: "Jog around the park 3x", status: "active" },
@@ -86,28 +93,29 @@ function App() {
 
   useEffect(() => {
     setTheme(isDarkMode ? "theme-dark" : "theme-light");
-  }, [isDarkMode]);
+    const preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.as = 'image';
+    preloadLink.href = backgroundImage;
+    preloadLink.fetchPriority = 'high'; // Chrome-specific
+    document.head.appendChild(preloadLink);
+     return () => {
+      document.head.removeChild(preloadLink);
+    };
+  }, [isDarkMode,backgroundImage]);
 
   return (
     <main
       className={theme}
       style={{
-        backgroundImage: `${
-          isMobile && !isDarkMode
-            ? `url(${mobileImageLight})`
-            : isMobile && isDarkMode
-            ? `url(${mobileImageDark})`
-            : !isMobile && !isDarkMode
-            ? `url(${desktopImageLight})`
-            : `url(${desktopImageDark})`
-        } `,
+        backgroundImage: `url(${backgroundImage})`,
       }}
     >
       <div className={`container josefin-sans-400`}>
         <header className="app-header josefin-sans-700 ">
           <h1>Todo</h1>
           <div className="image" onClick={() => setIsDarkMode(!isDarkMode)}>
-            <img src={isDarkMode ? sunIcon : moonIcon} alt="" />
+            <img src={isDarkMode ? sunIcon : moonIcon} alt="mode-icon" />
           </div>
         </header>
         <div className="card create-todo">
