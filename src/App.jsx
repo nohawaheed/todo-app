@@ -115,7 +115,7 @@ function App() {
         <header className="app-header josefin-sans-700 ">
           <h1>Todo</h1>
           <div className="image" onClick={() => setIsDarkMode(!isDarkMode)}>
-            <img src={isDarkMode ? sunIcon : moonIcon} alt="mode-icon" />
+            <img src={isDarkMode ? sunIcon : moonIcon} alt="mode-icon" width={26} height={26} />
           </div>
         </header>
         <div className="card create-todo">

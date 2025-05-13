@@ -114,7 +114,9 @@ export default function TodoCard(props) {
           style={{
             display: todo.status === "completed" ? `flex` : "none",
           }}
-          alt=""
+          alt="check-icon"
+          width={10}
+          height={10}
         />
       </span>
       <div className="todo-list">
@@ -130,7 +132,7 @@ export default function TodoCard(props) {
           {todo.item}
         </p>
         <div className="cross-icon">
-          <img src={crossIcon} alt="" onClick={() => deleteTodo(index)} />
+          <img src={crossIcon} alt="exit-icon" width={14} height={14} onClick={() => deleteTodo(index)} />
         </div>
       </div>
     </div>
