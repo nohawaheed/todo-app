@@ -121,6 +121,8 @@ function App() {
         <div className="card create-todo">
           <span className="circle"></span>
           <input
+            name="todo-input"
+            id="todo-input"
             type="text"
             placeholder="Create a new todo..."
             onKeyDown={handleKeyDown}
